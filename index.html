@@ -3,28 +3,655 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets Form</title>
+    <title>Personal Information Form</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Contact Form</h1>
-    <form id="myForm">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <button id="openFormBtn" class="step-button">Open Form</button>
+
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Personal Information Form</h1>
+                <span class="close-button">&times;</span>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="formProgress"></div>
+            </div>
+
+            <div class="step-navigation">
+                <div class="step-buttons">
+                    <button type="button" class="step-button" data-step="1">Personal Info</button>
+                    <button type="button" class="step-button" data-step="2">Address</button>
+                    <button type="button" class="step-button" data-step="3">Emergency Contact</button>
+                    <button type="button" class="step-button" data-step="4">Parents Info</button>
+                    <button type="button" class="step-button" data-step="5">Education</button>
+                    <button type="button" class="step-button" data-step="6">Medical History</button>
+                    <button type="button" class="step-button" data-step="7">Past Health</button>
+                    <button type="button" class="step-button" data-step="8">Surgical</button>
+                    <button type="button" class="step-button" data-step="9">Accidents</button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form id="myForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="step-content" data-step="1">
+                        <div class="form-columns">
+                            <section class="form-section">
+                                <h2>Personal Information</h2>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name:</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="firstName">First Name:</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middleName">Middle Name:</label>
+                                    <input type="text" id="middleName" name="middleName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth:</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="placeOfBirth">Place of Birth:</label>
+                                    <input type="text" id="placeOfBirth" name="placeOfBirth" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Age:</label>
+                                    <input type="number" id="age" name="age" required>
+                                </div>
+                            </section>
+
+                            <section class="form-section">
+                                <h2>Additional Information</h2>
+                                <div class="form-group">
+                                    <label for="sex">Sex:</label>
+                                    <select id="sex" name="sex" required>
+                                        <option value="">Select Sex</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="civilStatus">Civil Status:</label>
+                                    <select id="civilStatus" name="civilStatus" required>
+                                        <option value="">Select Civil Status</option>
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="widowed">Widowed</option>
+                                        <option value="separated">Separated</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="height">Height (cm):</label>
+                                    <input type="number" id="height" name="height" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Weight (kg):</label>
+                                    <input type="number" id="weight" name="weight" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bloodPressure">Blood Pressure:</label>
+                                    <input type="text" id="bloodPressure" name="bloodPressure" placeholder="e.g., 120/80" required>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Address Information -->
+                    <div class="step-content" data-step="2">
+                        <div class="form-columns">
+                            <section class="form-section">
+                                <h2>Present Address</h2>
+                                <div class="form-group">
+                                    <label for="presentAddress">Present Address:</label>
+                                    <textarea id="presentAddress" name="presentAddress" rows="3" required></textarea>
+                                </div>
+                            </section>
+
+                            <section class="form-section">
+                                <h2>Permanent Address</h2>
+                                <div class="form-group">
+                                    <label for="permanentAddress">Permanent Address:</label>
+                                    <textarea id="permanentAddress" name="permanentAddress" rows="3" required></textarea>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Emergency Contact -->
+                    <div class="step-content" data-step="3">
+                        <div class="form-columns">
+                            <section class="form-section">
+                                <h2>Emergency Contact</h2>
+                                <div class="form-group">
+                                    <label for="emergencyContact">Person to be Notified:</label>
+                                    <input type="text" id="emergencyContact" name="emergencyContact" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emergencyRelationship">Relationship:</label>
+                                    <input type="text" id="emergencyRelationship" name="emergencyRelationship" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emergencyContactNumber">Contact Number:</label>
+                                    <input type="tel" id="emergencyContactNumber" name="emergencyContactNumber" required>
+                                </div>
+                            </section>
+
+                            <section class="form-section">
+                                <h2>Spouse Information (if married)</h2>
+                                <div class="form-group">
+                                    <label for="spouseName">Name of Husband/Wife:</label>
+                                    <input type="text" id="spouseName" name="spouseName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="spouseContact">Spouse Contact Number:</label>
+                                    <input type="tel" id="spouseContact" name="spouseContact">
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Parents Information -->
+                    <div class="step-content" data-step="4">
+                        <div class="form-columns">
+                            <section class="form-section">
+                                <h2>Father's Information</h2>
+                                <div class="form-group">
+                                    <label for="fatherName">Father's Full Name:</label>
+                                    <input type="text" id="fatherName" name="fatherName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fatherContact">Father's Contact Number:</label>
+                                    <input type="tel" id="fatherContact" name="fatherContact" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fatherOccupation">Father's Occupation:</label>
+                                    <input type="text" id="fatherOccupation" name="fatherOccupation" required>
+                                </div>
+                            </section>
+
+                            <section class="form-section">
+                                <h2>Mother's Information</h2>
+                                <div class="form-group">
+                                    <label for="motherName">Mother's Full Name:</label>
+                                    <input type="text" id="motherName" name="motherName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="motherContact">Mother's Contact Number:</label>
+                                    <input type="tel" id="motherContact" name="motherContact" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="motherOccupation">Mother's Occupation:</label>
+                                    <input type="text" id="motherOccupation" name="motherOccupation" required>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Educational Background -->
+                    <div class="step-content" data-step="5">
+                        <div class="form-columns">
+                            <section class="form-section">
+                                <h2>Educational Background</h2>
+                                <div class="form-group">
+                                    <label for="lastSchool">Last School Attended:</label>
+                                    <input type="text" id="lastSchool" name="lastSchool" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="course">Course:</label>
+                                    <input type="text" id="course" name="course" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="year">Year:</label>
+                                    <input type="text" id="year" name="year" required>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Medical History -->
+                    <div class="step-content" data-step="6">
+                        <section class="form-section full-width">
+                            <h2>Family Medical History</h2>
+                            <p>Please check if any of your relatives have the following conditions:</p>
+                            <table class="medical-history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Condition</th>
+                                        <th>GRAND PARENTS</th>
+                                        <th>FATHER</th>
+                                        <th>MOTHER</th>
+                                        <th>SIBLINGS</th>
+                                        <th>OTHERS</th>
+                                        <th>REMARKS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Allergy</td>
+                                        <td><input type="checkbox" name="allergy_gp"></td>
+                                        <td><input type="checkbox" name="allergy_father"></td>
+                                        <td><input type="checkbox" name="allergy_mother"></td>
+                                        <td><input type="checkbox" name="allergy_siblings"></td>
+                                        <td><input type="checkbox" name="allergy_others"></td>
+                                        <td><input type="text" name="allergy_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arthritis</td>
+                                        <td><input type="checkbox" name="arthritis_gp"></td>
+                                        <td><input type="checkbox" name="arthritis_father"></td>
+                                        <td><input type="checkbox" name="arthritis_mother"></td>
+                                        <td><input type="checkbox" name="arthritis_siblings"></td>
+                                        <td><input type="checkbox" name="arthritis_others"></td>
+                                        <td><input type="text" name="arthritis_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bronchial Asthma</td>
+                                        <td><input type="checkbox" name="asthma_gp"></td>
+                                        <td><input type="checkbox" name="asthma_father"></td>
+                                        <td><input type="checkbox" name="asthma_mother"></td>
+                                        <td><input type="checkbox" name="asthma_siblings"></td>
+                                        <td><input type="checkbox" name="asthma_others"></td>
+                                        <td><input type="text" name="asthma_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cancer</td>
+                                        <td><input type="checkbox" name="cancer_gp"></td>
+                                        <td><input type="checkbox" name="cancer_father"></td>
+                                        <td><input type="checkbox" name="cancer_mother"></td>
+                                        <td><input type="checkbox" name="cancer_siblings"></td>
+                                        <td><input type="checkbox" name="cancer_others"></td>
+                                        <td><input type="text" name="cancer_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cerebrovascular Accident</td>
+                                        <td><input type="checkbox" name="stroke_gp"></td>
+                                        <td><input type="checkbox" name="stroke_father"></td>
+                                        <td><input type="checkbox" name="stroke_mother"></td>
+                                        <td><input type="checkbox" name="stroke_siblings"></td>
+                                        <td><input type="checkbox" name="stroke_others"></td>
+                                        <td><input type="text" name="stroke_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Congenital Heart Disease</td>
+                                        <td><input type="checkbox" name="heart_gp"></td>
+                                        <td><input type="checkbox" name="heart_father"></td>
+                                        <td><input type="checkbox" name="heart_mother"></td>
+                                        <td><input type="checkbox" name="heart_siblings"></td>
+                                        <td><input type="checkbox" name="heart_others"></td>
+                                        <td><input type="text" name="heart_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>COPD</td>
+                                        <td><input type="checkbox" name="copd_gp"></td>
+                                        <td><input type="checkbox" name="copd_father"></td>
+                                        <td><input type="checkbox" name="copd_mother"></td>
+                                        <td><input type="checkbox" name="copd_siblings"></td>
+                                        <td><input type="checkbox" name="copd_others"></td>
+                                        <td><input type="text" name="copd_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diabetes Mellitus</td>
+                                        <td><input type="checkbox" name="diabetes_gp"></td>
+                                        <td><input type="checkbox" name="diabetes_father"></td>
+                                        <td><input type="checkbox" name="diabetes_mother"></td>
+                                        <td><input type="checkbox" name="diabetes_siblings"></td>
+                                        <td><input type="checkbox" name="diabetes_others"></td>
+                                        <td><input type="text" name="diabetes_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gastrointestinal Orders</td>
+                                        <td><input type="checkbox" name="gi_gp"></td>
+                                        <td><input type="checkbox" name="gi_father"></td>
+                                        <td><input type="checkbox" name="gi_mother"></td>
+                                        <td><input type="checkbox" name="gi_siblings"></td>
+                                        <td><input type="checkbox" name="gi_others"></td>
+                                        <td><input type="text" name="gi_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hematopoietic Disorder</td>
+                                        <td><input type="checkbox" name="hematopoietic_gp"></td>
+                                        <td><input type="checkbox" name="hematopoietic_father"></td>
+                                        <td><input type="checkbox" name="hematopoietic_mother"></td>
+                                        <td><input type="checkbox" name="hematopoietic_siblings"></td>
+                                        <td><input type="checkbox" name="hematopoietic_others"></td>
+                                        <td><input type="text" name="hematopoietic_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kidney Disorders</td>
+                                        <td><input type="checkbox" name="kidney_gp"></td>
+                                        <td><input type="checkbox" name="kidney_father"></td>
+                                        <td><input type="checkbox" name="kidney_mother"></td>
+                                        <td><input type="checkbox" name="kidney_siblings"></td>
+                                        <td><input type="checkbox" name="kidney_others"></td>
+                                        <td><input type="text" name="kidney_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Neurologic Disorders</td>
+                                        <td><input type="checkbox" name="neuro_gp"></td>
+                                        <td><input type="checkbox" name="neuro_father"></td>
+                                        <td><input type="checkbox" name="neuro_mother"></td>
+                                        <td><input type="checkbox" name="neuro_siblings"></td>
+                                        <td><input type="checkbox" name="neuro_others"></td>
+                                        <td><input type="text" name="neuro_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Psychiatric Disorders</td>
+                                        <td><input type="checkbox" name="psych_gp"></td>
+                                        <td><input type="checkbox" name="psych_father"></td>
+                                        <td><input type="checkbox" name="psych_mother"></td>
+                                        <td><input type="checkbox" name="psych_siblings"></td>
+                                        <td><input type="checkbox" name="psych_others"></td>
+                                        <td><input type="text" name="psych_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rheumatic Heart Fever</td>
+                                        <td><input type="checkbox" name="rheumatic_gp"></td>
+                                        <td><input type="checkbox" name="rheumatic_father"></td>
+                                        <td><input type="checkbox" name="rheumatic_mother"></td>
+                                        <td><input type="checkbox" name="rheumatic_siblings"></td>
+                                        <td><input type="checkbox" name="rheumatic_others"></td>
+                                        <td><input type="text" name="rheumatic_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skin Disorder</td>
+                                        <td><input type="checkbox" name="skin_gp"></td>
+                                        <td><input type="checkbox" name="skin_father"></td>
+                                        <td><input type="checkbox" name="skin_mother"></td>
+                                        <td><input type="checkbox" name="skin_siblings"></td>
+                                        <td><input type="checkbox" name="skin_others"></td>
+                                        <td><input type="text" name="skin_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Endocrine Disorders</td>
+                                        <td><input type="checkbox" name="endocrine_gp"></td>
+                                        <td><input type="checkbox" name="endocrine_father"></td>
+                                        <td><input type="checkbox" name="endocrine_mother"></td>
+                                        <td><input type="checkbox" name="endocrine_siblings"></td>
+                                        <td><input type="checkbox" name="endocrine_others"></td>
+                                        <td><input type="text" name="endocrine_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuberculosis</td>
+                                        <td><input type="checkbox" name="tb_gp"></td>
+                                        <td><input type="checkbox" name="tb_father"></td>
+                                        <td><input type="checkbox" name="tb_mother"></td>
+                                        <td><input type="checkbox" name="tb_siblings"></td>
+                                        <td><input type="checkbox" name="tb_others"></td>
+                                        <td><input type="text" name="tb_remarks"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Others</td>
+                                        <td><input type="checkbox" name="others_gp"></td>
+                                        <td><input type="checkbox" name="others_father"></td>
+                                        <td><input type="checkbox" name="others_mother"></td>
+                                        <td><input type="checkbox" name="others_siblings"></td>
+                                        <td><input type="checkbox" name="others_others"></td>
+                                        <td><input type="text" name="others_remarks"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+
+                    <!-- Step 7: Past Health History (Updated) -->
+                    <div class="step-content" data-step="7">
+                        <section class="form-section full-width">
+                            <h2>Past Health History</h2>
+                            
+                            <!-- Allergies and Sensitivities -->
+                            <div class="form-group">
+                                <h3>Allergies and Sensitivities</h3>
+                                <div class="allergies-grid">
+                                    <div class="allergy-item">
+                                        <input type="checkbox" id="seafood_allergy" name="allergy_seafood">
+                                        <label for="seafood_allergy">Seafoods</label>
+                                    </div>
+                                    <div class="allergy-item">
+                                        <input type="checkbox" id="antibiotics_allergy" name="allergy_antibiotics">
+                                        <label for="antibiotics_allergy">Antibiotics</label>
+                                    </div>
+                                    <div class="allergy-item">
+                                        <input type="checkbox" id="analgesics_allergy" name="allergy_analgesics">
+                                        <label for="analgesics_allergy">Analgesics</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 20px;">
+                                    <label for="other_allergies">Other Allergies (Please specify):</label>
+                                    <textarea id="other_allergies" name="other_allergies" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Childhood Illness History -->
+                            <div class="form-group" style="margin-top: 30px;">
+                                <h3>History of Childhood Illness</h3>
+                                <p>Please check the illness if any:</p>
+                                <div class="illness-grid">
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="asthma" name="illness_asthma">
+                                        <label for="asthma">Bronchial Asthma</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="heart_disease" name="illness_heart_disease">
+                                        <label for="heart_disease">Congenital Heart Disease</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="chicken_pox" name="illness_chicken_pox">
+                                        <label for="chicken_pox">Chicken Pox</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="diphtheria" name="illness_diphtheria">
+                                        <label for="diphtheria">Diphtheria</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="convulsions" name="illness_convulsions">
+                                        <label for="convulsions">Convulsions</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="hepatitis" name="illness_hepatitis">
+                                        <label for="hepatitis">Hepatitis</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="dysentery" name="illness_dysentery">
+                                        <label for="dysentery">Dysentery</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="meningitis" name="illness_meningitis">
+                                        <label for="meningitis">Meningitis</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="influenza" name="illness_influenza">
+                                        <label for="influenza">Influenza</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="mumps" name="illness_mumps">
+                                        <label for="mumps">Mumps</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="measles" name="illness_measles">
+                                        <label for="measles">Measles</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="otitis" name="illness_otitis">
+                                        <label for="otitis">Otitis Media</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="nephritis" name="illness_nephritis">
+                                        <label for="nephritis">Nephritis</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="pneumonia" name="illness_pneumonia">
+                                        <label for="pneumonia">Pneumonia</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="rubella" name="illness_rubella">
+                                        <label for="rubella">Rubella</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="pertussis" name="illness_pertussis">
+                                        <label for="pertussis">Pertussis</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="poliomyelitis" name="illness_poliomyelitis">
+                                        <label for="poliomyelitis">Poliomyelitis</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="primary_complex" name="illness_primary_complex">
+                                        <label for="primary_complex">Primary Complex</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="tonsillitis" name="illness_tonsillitis">
+                                        <label for="tonsillitis">Tonsillitis</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="typhoid" name="illness_typhoid">
+                                        <label for="typhoid">Typhoid Fever</label>
+                                    </div>
+                                    <div class="illness-item">
+                                        <input type="checkbox" id="rheumatic" name="illness_rheumatic">
+                                        <label for="rheumatic">Rheumatic Heart Disease</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 20px;">
+                                    <label for="other_illnesses">Others (Please specify):</label>
+                                    <textarea id="other_illnesses" name="other_illnesses" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Maintenance Medications -->
+                            <div class="form-group" style="margin-top: 30px;">
+                                <h3>Maintenance Medications</h3>
+                                <p>If any, please list your current medications:</p>
+                                <div class="medication-history">
+                                    <div class="medication-entry">
+                                        <div class="form-group">
+                                            <label for="medication_name">Medication Name:</label>
+                                            <input type="text" id="medication_name" name="medication_name[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="medication_dosage">Dosage:</label>
+                                            <input type="text" id="medication_dosage" name="medication_dosage[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="medication_frequency">Frequency:</label>
+                                            <input type="text" id="medication_frequency" name="medication_frequency[]" placeholder="e.g., Once daily, Twice daily">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Immunization History -->
+                            <div class="form-group" style="margin-top: 30px;">
+                                <h3>Immunization History/Vaccination Done:</h3>
+                                <div class="vaccination-grid">
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="bcg" name="vaccination_bcg">
+                                        <label for="bcg">BCG</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="dpt" name="vaccination_dpt">
+                                        <label for="dpt">DPT</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="flu" name="vaccination_flu">
+                                        <label for="flu">Flu</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="hepa_a" name="vaccination_hepa_a">
+                                        <label for="hepa_a">Hepa A</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="hepa_b" name="vaccination_hepa_b">
+                                        <label for="hepa_b">Hepa B</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="measles" name="vaccination_measles">
+                                        <label for="measles">Measles</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="mmr" name="vaccination_mmr">
+                                        <label for="mmr">MMR</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="pneumococcal" name="vaccination_pneumococcal">
+                                        <label for="pneumococcal">Pneumococcal</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="polio" name="vaccination_polio">
+                                        <label for="polio">Polio</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="chicken_pox" name="vaccination_chicken_pox">
+                                        <label for="chicken_pox">Chicken Pox</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="japanese_encephalitis" name="vaccination_japanese_encephalitis">
+                                        <label for="japanese_encephalitis">Japanese Encephalitis Vaccine</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="covid_1" name="vaccination_covid_1">
+                                        <label for="covid_1">Covid 1</label>
+                                    </div>
+                                    <div class="vaccination-item">
+                                        <input type="checkbox" id="monkey_pox" name="vaccination_monkey_pox">
+                                        <label for="monkey_pox">Monkey Pox</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 20px;">
+                                    <label for="other_vaccinations">Others (Please specify):</label>
+                                    <textarea id="other_vaccinations" name="other_vaccinations" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Step 8: Surgical Operations -->
+                    <div class="step-content" data-step="8">
+                        <section class="form-section full-width">
+                            <h2>Surgical Operations</h2>
+                            
+                            <!-- Surgical Operations -->
+                            <div class="form-group" style="margin-top: 30px;">
+                                <h3>Surgical Operations</h3>
+                                <p>Please list any surgical operations you have had, including the type of operation, date, and year:</p>
+                                <div class="form-group">
+                                    <textarea id="surgical_history" name="surgical_history" rows="6" placeholder="Example: Appendectomy - January 15, 2020&#10;Gallbladder removal - March 3, 2018"></textarea>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Step 9: Accidents/Injuries -->
+                    <div class="step-content" data-step="9">
+                        <section class="form-section full-width">
+                            <h2>Accidents and Injuries</h2>
+                            
+                            <!-- Accidents/Injuries -->
+                            <div class="form-group" style="margin-top: 30px;">
+                                <h3>Accidents/Injuries</h3>
+                                <p>Please list any accidents or injuries you have had, including the date, time, place, type of trauma, treatment, and sequel:</p>
+                                <div class="form-group">
+                                    <textarea id="accident_history" name="accident_history" rows="6" placeholder="Example: Car accident - January 15, 2020, 2:30 PM, Main Street&#10;Treatment: Emergency room visit, stitches&#10;Sequel: Minor scar on left arm"></textarea>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+
+                <div class="step-navigation">
+                    <button type="button" class="step-button" id="prevStep">Previous</button>
+                    <button type="button" class="step-button" id="nextStep">Next</button>
+                    <button type="submit" class="step-button" id="submitForm" style="display: none;">Submit</button>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="successMessage" class="success-message">Form submitted successfully!</div>
-    <div id="errorMessage" class="error-message">Error submitting form. Please try again.</div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
